@@ -31,7 +31,7 @@ python SvnFuck.py http://example.com/
 ```tree
 |   readme.md
 |   requirements.txt
-|   SvnHack.py
+|   SvnFuck.py
 |
 +---data
 \---lib
