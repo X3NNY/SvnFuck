@@ -227,4 +227,4 @@ if __name__ == '__main__':
         svnFuck.toFuck()
     else:
         cprint('[!] Parameter Error, Please input correct parameters.', 'red')
-        cprint('[-] Example: python {} http://example.com/'.format((sys.argv[0])), 'red')
+        cprint('[-] Example: python {} http://example.com/.svn/'.format((sys.argv[0])), 'red')
