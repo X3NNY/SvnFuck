@@ -23,7 +23,7 @@ sudo pip install -r requirements.txt
 * Start Hack
 
 ```bash
-python SvnFuck.py http://example.com/
+python SvnFuck.py http://example.com/.svn/
 ```
 
 ## File Structure
