@@ -12,9 +12,8 @@ except ImportError:
 STD_OUTPUT_HANDLE = -11
 
 header = {
-    'accept': 'text/html,application/xhtml+xml,application/xml',
-    'User - Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36',
-    'referer': 'http://baidu.com'
+    #'accept': 'text/html,application/xhtml+xml,application/xml',
+    #'User - Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)',
 }
 
 ucolors = {
@@ -59,7 +58,7 @@ def cprint(s,color='default'):
         print('{}'.format(s))
         set_color('default')
     else:
-        print('\033[1;{}m{}\033[0m'.format(ucolors[color], str))
+        print('\033[1;{}m{}\033[0m'.format(ucolors[color], str(s)))
     return
 
 def dFile(url,path):

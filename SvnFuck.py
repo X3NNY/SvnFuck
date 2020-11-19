@@ -33,13 +33,14 @@ class SvnFuck(object):
     def resolveHost(self,host):
         '''Resolve address entered by user'''
         host = host.strip()
-        reg = re.compile(r'(?:http(?:s?):\/\/)?(?:[\w-]+\.)+(?:\w+)(?::\d+)?/?')
-        hosts = reg.findall(host)
-        if len(hosts) == 0:
-            cprint('[!] Host Error, Please input correct host address.', 'red')
-            cprint('[-] Your input:{}'.format(host),'red')
-            sys.exit()
-        host = hosts[0]
+        #reg = re.compile(r'(?:http(?:s?):\/\/)?(?:[\w-]+\.)+(?:\w+)(?::\d+)?/?')
+        #hosts = reg.findall(host)
+        #if len(hosts) == 0:
+        #    cprint('[!] Host Error, Please input correct host address.', 'red')
+        #    cprint('[-] Your input:{}'.format(host),'red')
+        #    sys.exit()
+        #host = hosts[0]
+        host = host[:host.index('.svn')]
         if not host.startswith('http'):
             host = 'http://'+host
         if not host.endswith('/'):
@@ -130,9 +131,12 @@ class SvnFuck(object):
                     # Download file failed
                     cprint('[-] Download {} Failed.Url:{}'.format(task[0],fileUrl),'red')
                     return
-                
-                rmakedirs(os.path.dirname(path+task[0]))
-                with open(path+task[0],'wb+') as f:
+                fpath = os.path.join(path,task[0])
+                try:
+                    os.makedirs(os.path.dirname(fpath))
+                except:
+                    pass
+                with open(fpath,'wb+') as f:
                     f.write(r.content)
                 size = calcSize(int(task[3]))
                 cprint('[+] Download {} Success. File size {}'.format(task[0],size),'green')
@@ -210,7 +214,7 @@ class SvnFuck(object):
             self.resolveEntries(self.__SVN_HOST+'.svn/entries')
         cprint('[+] All file downloads completed.','blue')
         cprint('[?] Do you want to continue downloading all files under /.svn/ (Y/N)','yellow')
-        flag = input().strip().lower()
+        flag = raw_input().strip().lower()
         if flag == 'y' or flag == 'yes':
             cprint('[+] Start downloading...Please wait on.','cyan')
             self.downAllFile()
