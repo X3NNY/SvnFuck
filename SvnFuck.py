@@ -180,7 +180,7 @@ class SvnFuck(object):
         '''Recursively parse /.svn/entries to get all file paths'''
         r = requests.get(url,headers=header)
         lists = r.text.split('\n')
-        for task,i in lists,range(len(lists)):
+        for task,i in zip(lists,range(len(lists))):
             if task == 'file':
                 if lists[i-1]:
                     if pre:
